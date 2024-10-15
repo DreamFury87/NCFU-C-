@@ -3,6 +3,7 @@ using namespace std;
 
 int a, b;
 char c;
+int month[12] = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
 void t1(){
     cin >> a;
@@ -11,15 +12,15 @@ void t1(){
 void t2(){
     cin >> c;
     switch(c){
-        case '.': cout << "точка"; break;
-        case ',': cout << "запятая"; break;
-        case '-': cout << "тире"; break;
-        case '?': cout << "знак вопроса"; break;
-        case '!': cout << "восклицательный знак"; break;
-        case ':': cout << "двоеточие"; break;
-        case ';': cout << "точка с запятой"; break;
-        case '...': cout << "многоточие"; break;
-        default: cout << "какой-то символ";
+        case '.': cout << "С‚РѕС‡РєР°"; break;
+        case ',': cout << "Р·Р°РїСЏС‚Р°СЏ"; break;
+        case '-': cout << "С‚РёСЂРµ"; break;
+        case '?': cout << "Р·РЅР°Рє РІРѕРїСЂРѕСЃР°"; break;
+        case '!': cout << "РІРѕСЃРєР»РёС†Р°С‚РµР»СЊРЅС‹Р№ Р·РЅР°Рє"; break;
+        case ':': cout << "РґРІРѕРµС‚РѕС‡РёРµ"; break;
+        case ';': cout << "С‚РѕС‡РєР° СЃ Р·Р°РїСЏС‚РѕР№"; break;
+        case '...': cout << "РјРЅРѕРіРѕС‚РѕС‡РёРµ"; break;
+        default: cout << "РєР°РєРѕР№-С‚Рѕ СЃРёРјРІРѕР»";
     }
 }
 void t3(){
@@ -40,7 +41,7 @@ void t4(){
         case 2: cout << 31+30+31; break;
         case 3: cout << 30+31+31; break;
         case 4: cout << 30+31+30; break;
-        default: cout << "Такого времени года не существует";
+        default: cout << "РўР°РєРѕРіРѕ РІСЂРµРјРµРЅРё РіРѕРґР° РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚";
     }
 }
 
@@ -58,13 +59,13 @@ void t5(){
 void t6(){
     cin >> a;
     switch(a%7){
-        case 0: cout << "вс"; break;
-        case 1: cout << "пн"; break;
-        case 2: cout << "вт"; break;
-        case 3: cout << "ср"; break;
-        case 4: cout << "чт"; break;
-        case 5: cout << "пт"; break;
-        default: cout << "сб"; break;
+        case 0: cout << "РІСЃ"; break;
+        case 1: cout << "РїРЅ"; break;
+        case 2: cout << "РІС‚"; break;
+        case 3: cout << "СЃСЂ"; break;
+        case 4: cout << "С‡С‚"; break;
+        case 5: cout << "РїС‚"; break;
+        default: cout << "СЃР±"; break;
     }
 }
 
@@ -72,19 +73,25 @@ void t7(){
     cin >> a;
     string str;
     switch(a){
-        case 1: str = "программу"; break;
-        case 2: str = "программы"; break;
-        case 3: str = "программы"; break;
-        case 4: str = "программы"; break;
-        default: str = "программ";
+        case 1: str = "РїСЂРѕРіСЂР°РјРјСѓ"; break;
+        case 2: str = "РїСЂРѕРіСЂР°РјРјС‹"; break;
+        case 3: str = "РїСЂРѕРіСЂР°РјРјС‹"; break;
+        case 4: str = "РїСЂРѕРіСЂР°РјРјС‹"; break;
+        default: str = "РїСЂРѕРіСЂР°РјРј";
     }
-    cout << "Я разработал " << a << " " << str << endl;
+    cout << "РЇ СЂР°Р·СЂР°Р±РѕС‚Р°Р» " << a << " " << str << endl;
 }
 
 void t8(){
     cin >> a >> b;
-    if(b>0 && b<13){
-        cout << endl;
+    if(b>0 && b<13 && a>0 && a<=31){
+        if(a<30){
+            cout << "Correct" << endl;
+        }else if(a==30 && b!=2){
+            cout << "Correct" << endl;
+        }else if(a==31 && month[b]!=30){
+            cout << "Correct" << endl;
+        }
     }else{
         cout << "Wrong date";
     }
@@ -94,33 +101,37 @@ void t9(){
     cin >> a >> b;
     cin >> c;
     switch(c){
-        case '+': cout << 31+31+28; break;
-        case '-': cout << 31+30+31; break;
-        case '*': cout << 30+31+31; break;
-        case '/': cout << 30+31+30; break;
+        case '+': cout << a+b; break;
+        case '-': cout << a-b; break;
+        case '*': cout << a*b; break;
+        case '/': cout << a/b; break;
         default: cout << "Error";
     }
 }
 
 void t10(){
     cin >> a;
-    switch(a){
-        case 1: cout << 31+31+28; break;
-        case 2: cout << 31+30+31; break;
-        case 3: cout << 30+31+31; break;
-        case 4: cout << 30+31+30; break;
-        default: cout << "Такого времени года не существует";
+    cin >> b;
+    switch(b){
+        case 1: cout << a*1024*1024*8; break;
+        case 2: cout << a*1024*1024; break;
+        case 3: cout << a*1024; break;
+        case 4: cout << a; break;
+        default: cout << a/1024;
     }
 }
 
 void t11(){
     cin >> a;
+    if(a < 0){
+        cout << "РјРёРЅСѓСЃ ";
+    }
     switch(a){
-        case 1: cout << 31+31+28; break;
-        case 2: cout << 31+30+31; break;
-        case 3: cout << 30+31+31; break;
-        case 4: cout << 30+31+30; break;
-        default: cout << "Такого времени года не существует";
+        case 1: cout << "РѕРґРёРЅ"; break;
+        case 2: cout << "РґРІР°"; break;
+        case 3: cout << "С‚СЂРё"; break;
+        case 4: cout << "С‡РµС‚С‹СЂРµ"; break;
+        default: cout << "РїСЏС‚СЊ";
     }
 }
 
@@ -128,8 +139,9 @@ int main(){
     setlocale(LC_ALL, "rus");
 
     int task;
-    cout << "Введите номер задачи: \n";
+    cout << "Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ Р·Р°РґР°С‡Рё: \n";
     cin >> task;
+    cout << "Р’РІРµРґРёС‚Рµ РґР°РЅРЅС‹Рµ: \n";
 
     switch(task){
         case 1: t1(); break;
