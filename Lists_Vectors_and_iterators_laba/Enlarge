@@ -1,0 +1,31 @@
+#include <iostream>
+#include <vector>
+#include <iterator>
+using namespace std;
+
+template <typename T>
+void enlarge(vector<T>& vec) {
+    if (vec.empty()) return;
+
+    vector<T> result;
+    typename vector<T>::iterator it = vec.begin();
+
+    result.push_back(*it++);
+
+    for (; it != vec.end(); ++it) {
+        T average = (*(it - 1) + *it) / 2;
+        result.push_back(average);
+        result.push_back(*it);
+    }
+
+    vec = result;
+}
+
+int main() {
+    vector<double> vec = {1.0, 2.0, 3.0, 4.0};
+    enlarge(vec);
+    for (int i=0; i<vec.size(); ++i) {
+        cout << vec[i] << " ";
+    }
+    return 0;
+}
