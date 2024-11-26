@@ -1,0 +1,42 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+struct Birthday {
+    int day;
+    int month;
+    int year;
+};
+
+struct Student {
+    string surname;
+    Birthday birthday;
+    char gender = 'M'; // Пол ('M' для мальчика, 'F' для девочки)
+};
+
+int main() {
+    const int n = 25;
+    Student students[n];
+    setlocale(LC_ALL, "ru");
+
+    for (int i = 0; i < n; ++i) {
+        cout << "Введите фамилию студента " << i + 1 << ": ";
+        cin >> students[i].surname;
+        cout << "Введите день рождения (число, месяц, год) студента " << i + 1 << ": ";
+        cin >> students[i].birthday.day >> students[i].birthday.month >> students[i].birthday.year;
+        cout << "Введите пол (M/F) студента " << i + 1 << ": ";
+        cin >> students[i].gender;
+        cout << endl;
+    }
+
+
+    cout << "\nФамилии девочек, родившихся в декабре:\n";
+    for (const auto& student : students) {
+        if (student.gender == 'F' && student.birthday.month == 12) {
+            cout << student.surname << endl;
+        }
+    }
+
+    return 0;
+}
