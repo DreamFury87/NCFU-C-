@@ -32,7 +32,7 @@ int main() {
 
 
     cout << "\nФамилии девочек, родившихся в декабре:\n";
-    for (const auto& student : students) {
+    for (auto student : students) {
         if (student.gender == 'F' && student.birthday.month == 12) {
             cout << student.surname << endl;
         }
