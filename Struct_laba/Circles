@@ -28,7 +28,7 @@ int main() {
 
 
     vector<Circle> filtered_circles;
-    for (const auto& circle : circles) {
+    for (auto circle : circles) {
         if (circle.radius > 1) {
             filtered_circles.push_back(circle);
         }
@@ -36,7 +36,7 @@ int main() {
 
 
     cout << "\nОкружности с радиусом больше 1:\n";
-    for (const auto& circle : filtered_circles) {
+    for (auto circle : filtered_circles) {
         cout << "Радиус: " << circle.radius
             << ", Центр: (" << circle.center.x << ", " << circle.center.y << ")\n";
     }
