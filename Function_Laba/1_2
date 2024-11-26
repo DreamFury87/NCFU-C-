@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+int sign(int n){
+    int answer = 2*((n%2==0) - 1)+1;
+    return answer;
+}
+
+double Sum1(int n){
+    double sum = 0;
+    for(int i = 1; i <= n; i++){
+        sum += sign(i) * (i - 1.0)/(i * i * i + i);
+    }
+    return sum;
+}
+
+double Sum2(double eps){
+    double sum = 0, term = 999;
+    int n = 2;
+    while(abs(term)>eps){
+        term = sign(n) * (n - 1.0)/(n * n * n + n);
+        sum += term;
+        n++;
+    }
+    return sum;
+}
+
+int main(){
+    int n;
+    double eps;
+    cout << "n: ";
+    cin >> n;
+    cout << "eps: ";
+    cin >> eps;
+    cout << Sum1(n) << " " << Sum2(eps);
+    return 0;
+}
