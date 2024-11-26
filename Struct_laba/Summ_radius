@@ -1,0 +1,55 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+struct Center {
+    double x; 
+    double y; 
+};
+
+struct Circle {
+    double radius; 
+    Center center; 
+};
+
+// Функция для сортировки окружностей по радиусу
+bool compare_(Circle a, Circle b) {
+    return a.radius < b.radius;
+}
+
+int main() {
+    setlocale(LC_ALL, "ru");
+    
+    const int n = 5; 
+    vector<Circle> circles(n); 
+
+    
+    for (int i = 0; i < n; ++i) {
+        cout << "Введите радиус окружности " << i + 1 << ": ";
+        cin >> circles[i].radius;
+        cout << "Введите координаты центра окружности " << i + 1 << " (X Y): ";
+        cin >> circles[i].center.x >> circles[i].center.y;
+        cout << endl;
+    }
+
+    
+    double summ_radius = 0;
+    for (auto circle : circles) {
+        summ_radius += circle.radius;
+    }
+
+    cout << "\nСумма радиусов всех окружностей: " << summ_radius << endl;
+
+    sort(circles.begin(), circles.end(), compare_);
+
+    cout << "\nОкружности, отсортированные по возрастанию радиуса:\n";
+    for (auto circle : circles) {
+        cout << "Радиус: " << circle.radius
+            << ", Центр: (" << circle.center.x << ", " << circle.center.y << ")\n";
+    }
+
+    return 0;
+}
+
