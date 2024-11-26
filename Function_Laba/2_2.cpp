@@ -19,7 +19,7 @@ bool palindrom(int n){
     return true;
 }
 
-int main(){
+void fun(){
     int n, q_plus=0, q_minus=0;
     int mx_plus = -999, mx_minus = -999;
 
@@ -44,5 +44,9 @@ int main(){
     if(q_minus > mx_minus) mx_minus = q_minus;
 
     cout << mx_plus << " " << mx_minus;
+}
+
+int main(){
+    fun();
     return 0;
 }
