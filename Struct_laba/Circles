@@ -1,0 +1,45 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+struct Center {
+    double x;
+    double y;
+};
+
+struct Circle {
+    double radius;
+    Center center;
+};
+
+int main() {
+    setlocale(LC_ALL, "ru");
+    const int n = 10;
+    vector<Circle> circles(n);
+
+    for (int i = 0; i < n; ++i) {
+        cout << "Введите радиус окружности " << i + 1 << ": ";
+        cin >> circles[i].radius;
+        cout << "Введите координаты центра окружности " << i + 1 << " (X Y): ";
+        cin >> circles[i].center.x >> circles[i].center.y;
+        cout << "\n";
+    }
+
+
+    vector<Circle> filtered_circles;
+    for (const auto& circle : circles) {
+        if (circle.radius > 1) {
+            filtered_circles.push_back(circle);
+        }
+    }
+
+
+    cout << "\nОкружности с радиусом больше 1:\n";
+    for (const auto& circle : filtered_circles) {
+        cout << "Радиус: " << circle.radius
+            << ", Центр: (" << circle.center.x << ", " << circle.center.y << ")\n";
+    }
+
+    return 0;
+}
