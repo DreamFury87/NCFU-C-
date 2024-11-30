@@ -1,0 +1,51 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+    int size1, size2;
+
+    cout << "Введите размер первого массива: ";
+    cin >> size1;
+    cout << "Введите размер второго массива: ";
+    cin >> size2;
+
+    int* arr1 = new int[size1];
+    int* arr2 = new int[size2];
+
+    cout << "\nВведите элементы первого массива:" << endl;
+    for (int i = 0; i < size1; ++i) {
+        cin >> arr1[i];
+    }
+
+    cout << "Введите элементы второго массива:" << endl;
+    for (int i = 0; i < size2; ++i) {
+        cin >> arr2[i];
+    }
+
+    int plus_cnt1 = 0;
+    for (int i = 0; i < size1; ++i) {
+        if (arr1[i] > 0) {
+            plus_cnt1++;
+        }
+    }
+    int plus_cnt2 = 0;
+    for (int i = 0; i < size2; ++i) {
+        if (arr2[i] > 0) {
+            plus_cnt2++;
+        }
+    }
+
+    if (plus_cnt1 > plus_cnt2) {
+        cout << "\nПервый массив содержит больше положительных элементов." << endl;
+    } else if (plus_cnt1 < plus_cnt2) {
+        cout << "\nВторой массив содержит больше положительных элементов." << endl;
+    } else {
+        cout << "\nОба массива содержат одинаковое количество положительных элементов." << endl;
+    }
+
+    delete[] arr1;
+    delete[] arr2;
+
+    return 0;
+}
