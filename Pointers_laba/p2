@@ -1,0 +1,17 @@
+#include <iostream>
+using namespace std;
+
+int main(){
+    setlocale(LC_ALL, "Russian");
+    char* p_char;
+    p_char = new char;
+
+    cin >> *p_char;
+    //*p_char = 'A';
+
+    cout << "Значение в выделенной ячейке: " << *p_char << std::endl;
+
+    delete p_char;
+    cout << endl << "Для завершения работы программы нажмите ENTER...";
+    return 0;
+}
