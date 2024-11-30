@@ -24,6 +24,7 @@ bool compare_by_title(const Book& a, const Book& b) {
 }
 
 int main() {
+    setlocale(LC_ALL, "ru");
     const int n = 10; 
     vector<Book> books(n); 
 
