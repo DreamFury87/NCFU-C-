@@ -13,46 +13,39 @@ struct Book {
     double price;        
 };
 
-// Проверка наличия буквы 'к' в названии издательства
-bool contains_k(string& publisher) {
+// Функция для проверки наличия буквы 'к' в названии издательства
+bool contains_k(const string& publisher) {
     return publisher.find('к') != string::npos;
 }
 
 // Функция для сортировки книг по названию
-bool compare_by_title(Book& a, Book& b) {
+bool compare_by_title(const Book& a, const Book& b) {
     return a.title < b.title;
 }
 
 int main() {
-    setlocale(LC_ALL, "ru");
-    const int n = 5; 
+    const int n = 10; 
     vector<Book> books(n); 
 
-    
     for (int i = 0; i < n; ++i) {
         cout << "Введите информацию о книге " << i + 1 << ":\n";
         cout << "Автор: ";
+        cin.ignore(); // Игнорируем оставшийся символ новой строки
         getline(cin, books[i].author);
-
         cout << "Название книги: ";
         getline(cin, books[i].title);
-
         cout << "Издательство: ";
         getline(cin, books[i].publisher);
-
         cout << "Год издания: ";
         cin >> books[i].year;
-
         cout << "Стоимость: ";
         cin >> books[i].price;
-
         cout << endl;
     }
 
     vector<Book> sorted_books;
 
-    
-    for (auto& book : books) {
+    for (const auto& book : books) {
         if (contains_k(book.publisher)) {
             sorted_books.push_back(book);
         }
@@ -61,13 +54,15 @@ int main() {
     // Сортировка по названию книги
     sort(sorted_books.begin(), sorted_books.end(), compare_by_title);
 
-   cout << "\nКниги с буквой 'к' в названии издательства:\n";
-    for (auto& book : sorted_books) {
+     
+    cout << "\nКниги с буквой 'к' в названии издательства, отсортированные по названию:\n";
+    for (const auto& book : sorted_books) {
         cout << "Автор: " << book.author
             << ", Название: " << book.title
             << ", Издательство: " << book.publisher
             << ", Год издания: " << book.year
             << ", Стоимость: " << book.price << endl;
     }
+
     return 0;
 }
