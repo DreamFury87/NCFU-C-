@@ -2,9 +2,14 @@
 using namespace std;
 
 int main(){
+    setlocale(LC_ALL, "Russian");
     int a, b;
-    cout << "Enter two integer numbers: \n";
+    cout << "Введите 2 целых числа через пробел: ";
     cin >> a >> b;
+
+    cout << "\nВходные значения \n";
+    cout << "a:  " << a << endl;
+    cout << "b:  " << b << endl;
     int *pa = &a;
     int *pb = &b;
 
@@ -15,7 +20,8 @@ int main(){
         *pb *= 5;
         *pa -= 5;
     }
-    cout << "a: " << *pa << endl;
-    cout << "b: " << *pb << endl;
+    cout << "\nВыходные значения \n";
+    cout << "a: " << a << endl;
+    cout << "b: " << b << endl;
     return 0;
 }
