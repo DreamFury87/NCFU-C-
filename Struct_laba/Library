@@ -5,30 +5,31 @@
 
 using namespace std;
 
+// Структура для описания книги
 struct Book {
-    string author;       
-    string title;        
-    string publisher;    
-    int year;            
-    double price;        
+    string author;       // Автор
+    string title;        // Название книги
+    string publisher;    // Издательство
+    int year;            // Год издания
+    double price;        // Стоимость
 };
 
 // Функция для проверки наличия буквы 'к' в названии издательства
-bool contains_k(const string& publisher) {
+bool containsK(const string& publisher) {
     return publisher.find('к') != string::npos;
 }
 
 // Функция для сортировки книг по названию
-bool compare_by_title(const Book& a, const Book& b) {
+bool compareByTitle(const Book& a, const Book& b) {
     return a.title < b.title;
 }
 
 int main() {
-    setlocale(LC_ALL, "ru");
-    const int n = 10; 
-    vector<Book> books(n); 
+    const int numBooks = 10; // Количество книг
+    vector<Book> books(numBooks); // Массив книг
 
-    for (int i = 0; i < n; ++i) {
+    // Ввод информации о 10 книгах
+    for (int i = 0; i < numBooks; ++i) {
         cout << "Введите информацию о книге " << i + 1 << ":\n";
         cout << "Автор: ";
         cin.ignore(); // Игнорируем оставшийся символ новой строки
@@ -41,28 +42,29 @@ int main() {
         cin >> books[i].year;
         cout << "Стоимость: ";
         cin >> books[i].price;
-        cout << endl;
     }
 
-    vector<Book> sorted_books;
+    // Новый массив для книг с буквой 'к' в названии издательства
+    vector<Book> filteredBooks;
 
+    // Переписываем книги, соответствующие условию
     for (const auto& book : books) {
-        if (contains_k(book.publisher)) {
-            sorted_books.push_back(book);
+        if (containsK(book.publisher)) {
+            filteredBooks.push_back(book);
         }
     }
 
-    // Сортировка по названию книги
-    sort(sorted_books.begin(), sorted_books.end(), compare_by_title);
+    // Сортировка нового массива по названию книги
+    sort(filteredBooks.begin(), filteredBooks.end(), compareByTitle);
 
-     
+    // Вывод информации о книгах из нового массива
     cout << "\nКниги с буквой 'к' в названии издательства, отсортированные по названию:\n";
-    for (const auto& book : sorted_books) {
+    for (const auto& book : filteredBooks) {
         cout << "Автор: " << book.author
-            << ", Название: " << book.title
-            << ", Издательство: " << book.publisher
-            << ", Год издания: " << book.year
-            << ", Стоимость: " << book.price << endl;
+             << ", Название: " << book.title
+             << ", Издательство: " << book.publisher
+             << ", Год издания: " << book.year
+             << ", Стоимость: " << book.price << endl;
     }
 
     return 0;
