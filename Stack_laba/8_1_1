@@ -18,7 +18,7 @@ public:
 
     void pop() {
         if (data.empty()) {
-            throw std::out_of_range("Стек пуст");
+            throw out_of_range("Стек пуст");
         }
         if (data.back() == max_stack.back()) {
             max_stack.pop_back();
@@ -29,15 +29,15 @@ public:
 
     float top(){
         if (data.empty()) {
-            throw std::out_of_range("Стек пуст");
+            throw out_of_range("Стек пуст");
         }
         return data.back();
     }
 
 
     float get_max(){
-        if (max_stack.empty()) {            
-            throw std::out_of_range("Стек пуст");
+        if (max_stack.empty()) {
+            throw out_of_range("Стек пуст");
         }
         return max_stack.back();
     }
