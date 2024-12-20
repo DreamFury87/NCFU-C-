@@ -1,0 +1,88 @@
+#include <iostream>
+#include <stack>
+#include <string>
+#include <stdexcept>
+using namespace std;
+
+class Book_Stack {
+private:
+    stack<string> data;
+    stack<float> price;
+
+public:
+    void push(string title, float price_) {
+        data.push(title);
+        price.push(price_);
+    }
+
+    void pop() {
+        if (data.empty()) {
+            throw out_of_range("Стек пуст");
+        }
+        data.pop();
+        price.pop();
+    }
+
+    //Название верхней книги
+    string top_title(){
+        if (data.empty()) {
+            throw out_of_range("Стек пуст");
+        }
+        return data.top();
+    }
+    //Цена верхней книги
+    float top_price(){
+        if (price.empty()) {
+            throw out_of_range("Стек пуст");
+        }
+        return price.top();
+    }
+    float average_price(){
+        if(price.empty())
+            throw out_of_range("Стек пуст");
+
+        stack<float> temp_ = price;
+        float result = 0;
+        int cnt = 0;
+
+        while (!temp_.empty()) {
+            result += temp_.top();
+            cnt++;
+            temp_.pop();
+        }
+
+        result/=cnt;
+        return result;
+    }
+
+    bool is_empty(){
+        return data.empty();
+    }
+
+    void print() const {
+        stack<string> temp = data;
+        stack<float> temp_ = price;
+
+        while (!temp.empty()) {
+            cout << temp.top() << ": " << temp_.top() << endl;
+            temp.pop();
+            temp_.pop();
+        }
+        cout << endl;
+    }
+};
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+    Book_Stack books;
+
+    books.push("Война и Мир", 335);
+    books.push("Отцы и дети", 572);
+    books.push("Живые игрушки", 2000);
+    books.push("Хоббит", 9900);
+    books.push("Ori artbook", 5990);
+
+    books.print();
+    cout << "Средняя стоимость книг: " << books.average_price() << "\n";
+    return 0;
+}
