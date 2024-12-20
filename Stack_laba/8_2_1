@@ -1,0 +1,96 @@
+#include <iostream>
+#include <vector>
+#include <stdexcept>
+using namespace std;
+
+class Queue {
+private:
+    const static int SIZE = 20;
+    float q[SIZE];
+    int head = -1, tail = -1;
+
+public:
+    bool is_full(){
+        if(head == 0 && tail == SIZE - 1)
+            return true;
+        if(head == tail + 1)
+            return true;
+        return false;
+    }
+
+    bool is_empty(){
+        if(head == -1)
+            return true;
+        else
+            return false;
+    }
+
+    void enqueue(float val) {
+        if(is_full()){
+            throw out_of_range("Очередь заполнена");
+        }
+        if(head == -1) head = 0;
+        tail = (tail + 1) % SIZE;
+        q[tail] = val;
+
+    }
+
+    void dequeue() {
+        if (is_empty()) {
+            throw out_of_range("Очередь пуста");
+        }
+        if (head == tail){
+            head = -1;
+            tail = -1;
+        }else{
+            head = (head + 1) % SIZE;
+        }
+        //cout << head << " " << tail << "\n";
+    }
+
+    float front(){
+        if (is_empty()) {
+            throw out_of_range("Очередь пуста");
+        }
+        return q[head];
+    }
+
+    void print(){
+        if (is_empty()) {
+            throw out_of_range("Очередь пуста");
+        }
+        for(int i = head; i <= tail; ++i){
+            cout << q[i] << " ";
+        }
+        cout << endl;
+    }
+
+    float summ(){
+        float result = 0;
+        if (is_empty()) {
+            throw out_of_range("Очередь пуста");
+        }
+        for(int i = head; i <= tail; ++i){
+            result += q[i];
+        }
+        cout << result;
+    }
+};
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+    Queue q;
+    q.enqueue(2.1f);
+    q.enqueue(2.1f);
+    q.enqueue(5.3f);
+    q.print();
+
+    q.dequeue();
+    q.print();
+
+    q.enqueue(4.9f);
+    q.print();
+
+    cout << "Сумма всех элементов в очереди: " << q.summ() << "\n";
+    return 0;
+}
