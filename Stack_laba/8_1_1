@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <stdexcept>
 using namespace std;
 
 class Float_Stack {
@@ -17,9 +18,9 @@ public:
 
     void pop() {
         if (data.empty()) {
-            cout << "Стек пуст\n";
+            throw std::out_of_range("Стек пуст");
         }
-        else if (data.back() == max_stack.back()) {
+        if (data.back() == max_stack.back()) {
             max_stack.pop_back();
         }
         data.pop_back();
@@ -28,15 +29,15 @@ public:
 
     float top(){
         if (data.empty()) {
-            cout << "Стек пуст\n";
+            throw std::out_of_range("Стек пуст");
         }
         return data.back();
     }
 
 
     float get_max(){
-        if (max_stack.empty()) {
-            cout << "Стек пуст\n";
+        if (max_stack.empty()) {            
+            throw std::out_of_range("Стек пуст");
         }
         return max_stack.back();
     }
