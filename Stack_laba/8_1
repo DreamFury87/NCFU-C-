@@ -1,0 +1,72 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Float_Stack {
+private:
+    vector<float> data; // Стек для хранения данных
+    vector<float> max_stack;  // Стек для хранения максимумов
+
+public:
+    void push(float val) {
+        data.push_back(val);
+        if (max_stack.empty() || val >= max_stack.back()) {
+            max_stack.push_back(val);
+        }
+    }
+
+    void pop() {
+        if (data.empty()) {
+            cout << "Стек пуст\n";
+        }
+        else if (data.back() == max_stack.back()) {
+            max_stack.pop_back();
+        }
+        data.pop_back();
+    }
+
+
+    float top(){
+        if (data.empty()) {
+            cout << "Стек пуст\n";
+        }
+        return data.back();
+    }
+
+
+    float get_max(){
+        if (max_stack.empty()) {
+            cout << "Стек пуст\n";
+        }
+        return max_stack.back();
+    }
+
+    bool is_empty(){
+        return data.empty();
+    }
+
+
+    void print() const {
+        vector<float> temp = data;
+        while (!temp.empty()) {
+            cout << temp.back() << " ";
+            temp.pop_back();
+        }
+        cout << endl;
+    }
+};
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+    Float_Stack st;
+
+    st.push(3.5);
+    st.push(2.1);
+    st.push(5.7);
+    st.push(1.4);
+    st.push(5.7);
+
+    st.print();
+    cout << "Максимальный элемент: " << st.get_max() << "\n";
+    return 0;
+}
