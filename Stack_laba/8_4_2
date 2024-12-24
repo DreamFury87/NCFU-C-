@@ -1,0 +1,35 @@
+#include <iostream>
+#include <forward_list>
+using namespace std;
+
+int main(){
+    forward_list<int> nums {1, -2, 0, 55, -75, 0, 5, 9};
+
+    for(auto it = nums.begin(); it != nums.end(); it++){
+        cout << *it << " ";
+    }
+
+    auto cur = nums.begin();
+    //auto next = ++nums.begin();
+    auto fin = nums.end();
+    auto prev = nums.before_begin();
+
+    while(cur != fin){
+        if(*cur == 0){
+            nums.emplace_after(prev, 111);
+            prev++;
+            nums.emplace_after(prev, 222);
+            break;
+        }
+        prev++;
+        cur++;
+        //next++;
+    }
+
+    cout << "\n====================\n";
+
+    for(auto it = nums.begin(); it != fin; it++){
+        cout << *it << " ";
+    }
+    return 0;
+}
