@@ -1,0 +1,51 @@
+#include <iostream>
+#include <list>
+using namespace std;
+
+int main(){
+    setlocale(LC_ALL, "Russian");
+    list<int> nums;
+    int p1, start = -10, end_ = 10;
+
+
+    for(int i = 0; i < 10; i++){
+        nums.push_back(rand() % (end_ - start + 1) + start);
+    }
+
+    auto it = nums.begin();
+    for(;it != nums.end(); it++){
+        cout << *it << " ";
+    }
+    cout << "\n====================\n";
+
+    cout << "Введите указатель на начало списка: ";
+    cin >> p1;
+
+    auto prev = --nums.begin();
+    auto cur = nums.begin();
+
+    for(int i = 0; i<p1; i++){
+        prev++;
+        cur++;
+    }
+    auto copy_ = cur;
+    auto fin = nums.end();
+
+    while(cur != fin){
+        if(*cur % 2 != 0){
+            nums.emplace(prev, *cur);
+            prev++;
+        }
+        prev++;
+        cur++;
+    }
+
+    cout << "\n====================\n";
+
+    for(auto it = copy_; it != fin; it++){
+        cout << *it << " ";
+    }
+
+    cout << "\nПервый элемент списка: " << *copy_;
+    return 0;
+}
