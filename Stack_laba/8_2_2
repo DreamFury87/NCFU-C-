@@ -1,0 +1,70 @@
+#include <iostream>
+#include <forward_list>
+#include <stdexcept>
+using namespace std;
+
+class String_Stack {
+private:
+    forward_list<string> stack_;
+
+public:
+    bool is_empty(){
+        return stack_.empty();
+    }
+
+    void push(string val) {
+        stack_.push_front(val);
+    }
+
+    void pop() {
+        if (is_empty()) {
+            throw out_of_range("Стек пуст");
+        }
+        stack_.pop_front();
+    }
+
+    string front(){
+        if (is_empty()) {
+            throw out_of_range("Стек пуст");
+        }
+        return stack_.front();
+    }
+
+    void print(){
+        if (is_empty()) {
+            throw out_of_range("Стек пуст");
+        }
+        for(auto it = stack_.begin(); it != stack_.end(); ++it){
+            cout << *it << " ";
+        }
+        cout << endl;
+    }
+    void print(int symbols){
+        if (is_empty()) {
+            throw out_of_range("Стек пуст");
+        }
+        for(auto it = stack_.begin(); it != stack_.end(); ++it){
+            if((*it).size() == symbols)
+                cout << *it << " ";
+        }
+        cout << endl;
+    }
+};
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+    String_Stack st;
+    st.push("Students");
+    st.push("of");
+    st.push("the");
+    st.push("group");
+    st.push("3");
+
+    st.print();
+
+    st.pop();
+    st.print();
+
+    st.print(2);
+    return 0;
+}
