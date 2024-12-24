@@ -1,0 +1,33 @@
+#include <iostream>
+#include <forward_list>
+using namespace std;
+
+int main(){
+    forward_list<float> nums {1.f, -2, 8, 55, -55.5f, 45, 55, 9.7f};
+
+    for(auto it = nums.begin(); it != nums.end(); it++){
+        cout << *it << " ";
+    }
+
+    auto cur = nums.begin();
+    auto next = ++nums.begin();
+    auto fin = nums.end();
+    auto prev = nums.before_begin();
+
+    while(cur != fin){
+        if(*next == 55){
+            nums.erase_after(prev);
+            break;
+        }
+        prev++;
+        cur++;
+        next++;
+    }
+
+    cout << "====================\n";
+
+    for(auto it = nums.begin(); it != fin; it++){
+        cout << *it << " ";
+    }
+    return 0;
+}
