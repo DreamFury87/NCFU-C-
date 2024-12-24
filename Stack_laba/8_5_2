@@ -1,0 +1,43 @@
+#include <iostream>
+#include <forward_list>
+using namespace std;
+
+int main(){
+    forward_list<int> nums {-1, -2, 0, 55, -75, 0, 15, 5, 9, 15, 8};
+
+    for(auto it = nums.begin(); it != nums.end(); it++){
+        cout << *it << " ";
+    }
+
+    auto cur = nums.begin();
+    auto fin = nums.end();
+    auto prev = nums.before_begin();
+
+    while(cur != fin){
+        if(*cur > 4){
+            nums.erase_after(prev);
+            break;
+        }
+        prev++;
+        cur++;
+    }
+
+    cur = nums.begin();
+    prev = nums.before_begin();
+
+    while(cur != fin){
+        if(*cur == 15){
+            nums.emplace_after(prev, 10);
+            prev++;
+        }
+        prev++;
+        cur++;
+    }
+
+    cout << "\n====================\n";
+
+    for(auto it = nums.begin(); it != fin; it++){
+        cout << *it << " ";
+    }
+    return 0;
+}
