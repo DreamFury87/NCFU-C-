@@ -3,7 +3,7 @@
 using namespace std;
 
 int main(){
-    forward_list<int> nums {-1, -2, 0, 55, -75, 0, 5, 9};
+    forward_list<float> nums {-1, -2, 0, 55, -75, 0, 5, 9};
 
     for(auto it = nums.begin(); it != nums.end(); it++){
         cout << *it << " ";
