@@ -1,0 +1,27 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include "fraction.h"
+using namespace std;
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+    vector<Fraction> nums;
+    ifstream edit("edit.txt");
+    ofstream memo("memo.txt");
+
+    int den, num;
+    char c;
+    while (edit >> num >> c >> den) {
+        nums.push_back(Fraction(num, den));
+    }
+
+    for (auto elem : nums) {        
+        memo << "Значение в процентах: " << elem.percent() << " " << "Сумма цифр знаменателя: "
+        << elem.denominator_sum() << endl;
+    }
+
+    edit.close();
+    memo.close();
+    return 0;
+}
