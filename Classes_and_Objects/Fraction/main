@@ -16,7 +16,9 @@ int main() {
         nums.push_back(Fraction(num, den));
     }
 
-    for (auto elem : nums) {        
+    for (auto elem : nums) {
+        cout << "Дробь: " << elem.get_numerator() << "/" << elem.get_denominator() << " ;Значение в процентах: " << elem.percent() << " " << ";Сумма цифр знаменателя: "
+            << elem.denominator_sum() << endl;
         memo << "Значение в процентах: " << elem.percent() << " " << "Сумма цифр знаменателя: "
         << elem.denominator_sum() << endl;
     }
