@@ -1,0 +1,28 @@
+#include <iostream>
+#include <string>
+#include <sstream>
+#include <cstdlib>
+using namespace std;
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+    system("chcp 1251");
+    string text;
+
+    cout << "Введите текст: ";
+    getline(cin, text);
+
+    size_t pos = 0;
+    while ((pos = text.find("проблема", pos)) != string::npos) {
+        text.replace(pos, 8, "задача");
+        pos += 6;
+    }
+
+    pos = 0;
+    while ((pos = text.find("Иванов И.И.", pos)) != string::npos) {
+        text.erase(pos, 12);
+    }
+
+    cout << "Измененный текст:\n" << text << endl;
+    return 0;
+}
