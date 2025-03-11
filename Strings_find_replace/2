@@ -1,0 +1,55 @@
+#include <iostream>
+#include <string>
+#include <sstream>
+#include <cstdlib>
+using namespace std;
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+    system("chcp 1251");
+    string text, result = "";
+
+    cout << "Введите текст: ";
+    getline(cin, text);
+
+    size_t pos = 0;
+    int space_counter = 0, counti = 0;
+
+    while (pos != text.size()) {
+        if(text[pos] == '.'){
+            result += '.';
+            while(text[++pos] == ' '){
+                space_counter++;
+            }
+
+            if(space_counter){
+                result += ' ';
+                space_counter = 0;
+            }
+
+            char let = text[pos];
+            if(let >= 'a' && let <= 'z') let = toupper(let);
+            result += let;
+        }
+        else{
+            result += text[pos];
+        }
+        pos++;
+    }
+
+    string current_word = "";
+    for(int i = 0; i < result.size() - 1; ++i){
+        if(result[i] == ' '){
+            if(current_word == "ПК" || current_word == "ПК.") counti++;
+            current_word = "";
+        }else{
+            current_word += result[i];
+        }
+    }
+    current_word += result[result.size() - 1];
+    if(current_word == "ПК" || current_word == "ПК.") counti++;
+
+    cout << "Измененный текст:\n" << result << endl;
+    cout << "Количество слов 'ПК': " << counti << endl;
+    return 0;
+}
