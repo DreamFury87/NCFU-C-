@@ -1,0 +1,28 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <cstdlib>
+using namespace std;
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+    system("chcp 1251");
+    string text;
+
+    cout << "Введите текст с двумя точками: ";
+    getline(cin, text);
+
+    size_t first_dot = text.find('.');
+    size_t second_dot = text.find('.', first_dot + 1);
+
+    cout << "Позиция первой точки: " << first_dot << endl;
+    cout << "Позиция второй точки: " << second_dot << endl;
+
+    string substring = text.substr(first_dot + 1, second_dot - first_dot - 1);
+
+    sort(substring.begin(), substring.end());
+
+    cout << "Упорядоченные символы между точками: " << substring << endl;
+
+    return 0;
+}
