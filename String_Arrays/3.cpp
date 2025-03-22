@@ -5,7 +5,7 @@ using namespace std;
 int count_letter_a(string name){
     int result = 0;
     for(auto let: name){
-        if(let == 'à' or let=='À') result++;
+        if(let == 'Ã ' or let=='Ã€') result++;
     }
     return result;
 }
@@ -14,11 +14,11 @@ int main()
 {
     setlocale(LC_ALL, "Russian");
     system("chcp 1251");
-    const int n{5};
+    const int n{10};
 
     string girls_names[n];
 
-    cout << "Ââåäèòå " << n << " èì¸í äåâî÷åê:\n";
+    cout << "Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ " << n << " Ã¨Ã¬Â¸Ã­ Ã¤Ã¥Ã¢Ã®Ã·Ã¥Ãª:\n";
     for(int i = 0; i < n; ++i){
         getline(cin, girls_names[i]);
     }
@@ -33,7 +33,7 @@ int main()
     }
 
 
-    cout << "\nÈìÿ ñ ìàêñèìàëüíûì êîëè÷åñòâîì áóêâ 'à': " <<
+    cout << "\nÃˆÃ¬Ã¿ Ã± Ã¬Ã ÃªÃ±Ã¨Ã¬Ã Ã«Ã¼Ã­Ã»Ã¬ ÃªÃ®Ã«Ã¨Ã·Ã¥Ã±Ã²Ã¢Ã®Ã¬ Ã¡Ã³ÃªÃ¢ 'Ã ': " <<
     girls_names[index] <<  endl;
     return 0;
 }
