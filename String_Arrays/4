@@ -1,0 +1,43 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+bool rok_ending(string word){
+    int len = word.length();
+    if(len < 3) return false;
+
+    string last_three_letters = "";
+    while(last_three_letters.length() < 3){
+        last_three_letters += word[--len];
+    }
+
+    return (last_three_letters == "kor" or last_three_letters == "кор");
+}
+
+int main()
+{
+    setlocale(LC_ALL, "Russian");
+    system("chcp 1251");
+    const int n{20};
+
+    string mountain_peaks[n];
+    vector<string> sorted_peaks;
+
+    cout << "Введите " << n << " горных вершин:\n";
+    for(int i = 0; i < n; ++i)
+        getline(cin, mountain_peaks[i]);
+
+
+    for(int i = 0; i < n; ++i)
+        if(rok_ending(mountain_peaks[i])) sorted_peaks.push_back(mountain_peaks[i]);
+
+    sort(sorted_peaks.begin(), sorted_peaks.end());
+
+    cout << "\nОтсортированный массив:" <<  endl;
+    for(auto elem: sorted_peaks)
+        cout << elem << "\n";
+
+    return 0;
+}
