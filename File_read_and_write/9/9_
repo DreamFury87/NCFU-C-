@@ -1,0 +1,53 @@
+#include <fstream>
+#include <ctime>
+#include <cmath>
+#include <vector>
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    srand(time(NULL));
+    setlocale(LC_ALL, "Russian");
+
+    ofstream memo("memo.bin", ios::binary | ios::out);
+    vector<double> nums;
+    float a = 5.0;
+
+    if(memo.is_open()){
+        for(int i = 0; i <= 30; ++i){
+            memo << (float(rand())/float(rand()) * a) << " ";
+        }
+    }
+    memo.close();
+
+    ifstream in("memo.bin", ios::binary | ios::in);
+
+    if(in.is_open()){
+        //in.read((char*)&a, sizeof(float))
+        while(in >> a) nums.push_back(a);
+
+        cout << "Исходный файл: \n";
+        for(int i = 0; i < nums.size(); ++i){
+            cout << nums[i] << " ";
+            nums[i] *= 1.5;
+        }
+
+    }
+    in.close();
+
+    ofstream output("memo.bin", ios::binary | ios::out);
+    if(output.is_open()){
+
+        cout << "\n\nПосле увеличения каждого числа в 1.5 раза: \n";
+        for(auto elem: nums){
+            output << elem << " ";
+            cout << elem << " ";
+
+        }
+
+    }
+    output.close();
+
+    return 0;
+}
