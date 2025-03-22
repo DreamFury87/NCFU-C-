@@ -1,0 +1,28 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    setlocale(LC_ALL, "Russian");
+    system("chcp 1251");
+    
+    string cities[10];
+
+    cout << "Введите 10 городов:\n";
+    for(int i = 0; i < 10; ++i){        
+        getline(cin, cities[i]);
+    }
+
+    int index = 0;
+    for(int i = 0; i < 10; ++i)
+        if(cities[i][0] == 'К') index = i;
+
+    swap(cities[0], cities[index]);
+
+    cout << endl;
+    for(auto elem : cities){
+        cout << elem << "\n";
+    }
+    return 0;
+}
