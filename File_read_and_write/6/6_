@@ -1,0 +1,16 @@
+#include "file_operations.h"
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+    string str = read_from_file("f1.txt");
+    cout << "Исходный файл f1.txt: \n" << str << "\n============\n";
+    to_write(str, "f2.txt");
+
+    string result = read_from_file("f2.txt");
+    cout << "Переписано в f2.txt: \n" << result << "\n============\n";
+    return 0;
+}
