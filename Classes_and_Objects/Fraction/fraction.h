@@ -7,25 +7,13 @@ private:
     int numerator;
     int denominator;
 public:
-    Fraction() {
-        numerator = 1;
-        denominator = 2;
-    }
-    Fraction(int num) {
-        numerator = num;
-        denominator = 2;
-    }
-    Fraction(int num, int den) {
-        std::cout << "created\n";
-        numerator = num;
-        denominator = den;
-    }
-    ~Fraction() {
-        std::cout << "deleted" << std::endl;
-    }
+    Fraction();
+    Fraction(int num);
+    Fraction(int num, int den);
+    ~Fraction();
+
     int get_numerator();
     int get_denominator();
     std::string percent();
     int denominator_sum();
 };
-
