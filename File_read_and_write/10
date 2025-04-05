@@ -1,0 +1,83 @@
+#include <fstream>
+#include <string>
+#include <vector>
+#include <iostream>
+
+using namespace std;
+
+struct Client {
+    char name[20];
+    double cost_of_paying_for_Internet_per_month;
+    int number_of_months_of_payment;
+    int number_of_months_of_payment_in_advance;
+};
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+    system("chcp 1251");
+
+    ofstream data("clients.bin", ios::binary | ios::out);
+    vector<Client> arr = { {"Козлов Е.А.", 850, 2, 0},
+                          {"Левченко А.М.", 495, 2, 3},
+                          {"Мурье Н.Д.", 700, 1, 1},
+                          {"Кудаев М.С.", 600, 2, 3} };
+
+    if (data.is_open()) {
+        for (auto& elem : arr)
+            data.write((char*)&elem, sizeof(elem));
+    }
+    data.close();
+
+    vector<Client> data_from_file;
+
+    ifstream in("clients.bin", ios::binary | ios::in);
+    Client elem;
+
+    if (in.is_open()) {
+        while (in.read((char*)&elem, sizeof(Client))) {
+            data_from_file.push_back(elem);
+        }
+    }
+    in.close();
+
+    cout << "Исходный файл: \n";
+    for (auto & elem : data_from_file) {
+        cout << elem.name << "\nСтоимость оплаты услуг интернет сети: "
+            << elem.cost_of_paying_for_Internet_per_month << "\nКоличество месяцев оплаты: " <<
+            elem.number_of_months_of_payment << "\nКоличество месяцев оплаты вперед: "
+            << elem.number_of_months_of_payment_in_advance << endl;
+
+        cout << "===========\n";
+        int num = elem.number_of_months_of_payment_in_advance;
+        if(num >= 3){
+            int cost = elem.cost_of_paying_for_Internet_per_month;            
+            elem.cost_of_paying_for_Internet_per_month = cost * 0.93;
+            //cout << num << " " << elem.cost_of_paying_for_Internet_per_month << endl;
+        }
+    }
+    data.close();
+
+    ofstream edit("clients.bin", ios::binary | ios::out);
+    if(edit.is_open()){
+        for(auto elem: data_from_file){
+            edit.write((char*)&elem, sizeof(elem));
+        }
+    }
+    edit.close();
+
+    cout << "\nПереписанный бинарный файл: \n";
+    ifstream input("clients.bin", ios::binary | ios::in);
+
+    if (input.is_open()) {
+        while (input.read((char*)&elem, sizeof(Client))) {
+            cout << elem.name << "\nСтоимость оплаты услуг интернет сети за месяц: "
+                << elem.cost_of_paying_for_Internet_per_month << "\nКоличество месяцев оплаты: " <<
+                elem.number_of_months_of_payment << "\nКоличество месяцев оплаты вперед: "
+                << elem.number_of_months_of_payment_in_advance << endl;
+
+            cout << "===========\n";
+        }
+    }
+    input.close();
+    return 0;
+}
