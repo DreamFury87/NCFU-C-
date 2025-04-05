@@ -39,7 +39,7 @@ string information(Abiturient ab){
     ostringstream os;
     os << ab.surname << " " << ab.name << " " << ab.patronymic << " " << ab.gender <<
         " " << ab.nationality << " " << ab.birthday << " " << format(ab.address) <<
-        " " << grades_str(ab.grades) << " " << ab.passing_score << endl;  
+        " " << grades_str(ab.grades) << " " << ab.passing_score;  
     
     return os.str();
 }
@@ -84,4 +84,3 @@ int main() {
     out.close();
     return 0;
 }
-
