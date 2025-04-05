@@ -41,12 +41,17 @@ int main() {
 
         cout << "\n\nПосле увеличения каждого числа в 1.5 раза: \n";
         for(auto elem: nums){
-            output << elem << " ";
+            //output << elem << " ";
+            output.write((char*)&elem, sizeof(elem));
             cout << elem << " ";
 
         }
 
     }
+    output.close();
+
+    return 0;
+}
     output.close();
 
     return 0;
