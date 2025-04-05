@@ -11,21 +11,20 @@ int main() {
     setlocale(LC_ALL, "Russian");
 
     ofstream memo("memo.bin", ios::binary | ios::out);
-    vector<double> nums;
+    vector<float> nums;
     float a = 5.0;
 
     if(memo.is_open()){
         for(int i = 0; i <= 30; ++i){
-            memo << (float(rand())/float(rand()) * a) << " ";
+            float num = float(rand())/float(rand()) * a;
+            memo.write((char*)&num, sizeof(num));
         }
     }
     memo.close();
 
     ifstream in("memo.bin", ios::binary | ios::in);
-
     if(in.is_open()){
-        //in.read((char*)&a, sizeof(float))
-        while(in >> a) nums.push_back(a);
+        while(in.read((char*)&a, sizeof(float))) nums.push_back(a);
 
         cout << "Исходный файл: \n";
         for(int i = 0; i < nums.size(); ++i){
@@ -38,21 +37,18 @@ int main() {
 
     ofstream output("memo.bin", ios::binary | ios::out);
     if(output.is_open()){
-
-        cout << "\n\nПосле увеличения каждого числа в 1.5 раза: \n";
         for(auto elem: nums){
-            //output << elem << " ";
             output.write((char*)&elem, sizeof(elem));
-            cout << elem << " ";
-
         }
-
     }
     output.close();
 
-    return 0;
-}
-    output.close();
-
+    cout << "\n\nПосле увеличения каждого числа в 1.5 раза: \n";
+    ifstream input("memo.bin", ios::binary | ios::in);
+    if(input.is_open()){
+        //in.read((char*)&a, sizeof(float))
+        while(input.read((char*)&a, sizeof(float))) cout << a << " ";
+    }
+    input.close();
     return 0;
 }
