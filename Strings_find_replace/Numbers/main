@@ -1,0 +1,39 @@
+#include <iostream>
+#include "Array.h"
+using namespace std;
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+    // Определение массивов
+    /*
+    int n1, n2; // Длины массивов
+    cout << "n1 = ";
+    cin >> n1;
+    cout << "n2 = ";
+    cin >> n2;
+    */
+    int n1 = 3;
+    int n2 = 3;
+    
+    Array numbers1(n1);
+    Array numbers2(n2);
+
+    cout << "Ввод первого массива: \n";
+    numbers1.Input();
+
+    cout << "\nВвод второго массива: \n";
+    numbers2.Input();
+
+    cout << "Умножение всех элементов первого массива на 2: \n";
+    numbers1.Multiply(2, '*');
+    numbers1.print_all();
+    
+    cout << "Сумма первого и второго массивов в новую переменную: \n";
+    Array numbers3 = Sum(numbers1, numbers2, '+');
+    numbers3.print_all();
+
+    cout << "Умножение второго массива и сохранение результата в новую переменную: \n";
+    Array numbers4 = Multiply(numbers2, 6, '*');
+    numbers4.print_all();
+    return 0;
+}
